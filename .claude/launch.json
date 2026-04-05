@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Static Site (npx serve)",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["serve", "C:/Users/noooc/Downloads/tannercordalis-website", "-p", "3000", "--no-clipboard"],
+      "port": 3000
+    },
+    {
+      "name": "Static Site (Python)",
+      "runtimeExecutable": "py",
+      "runtimeArgs": ["-m", "http.server", "8080", "--directory", "C:/Users/noooc/Downloads/tannercordalis-website"],
+      "port": 8080
+    }
+  ]
+}

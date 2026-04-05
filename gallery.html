@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GALLERY — Tanner Cordalis Photography</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="jukebox.js" defer></script>
+</head>
+<body>
+
+<!-- JUKEBOX -->
+<div id="jukebox">
+  <h3>🎵 JUKEBOX 🎵</h3>
+  <span class="jukebox-horse">🐎</span>
+  <div id="song-display"><span id="song-title-scroll">♪ Press play! ♪</span></div>
+  <div class="jukebox-controls">
+    <button class="jukebox-btn" onclick="prevSong()">⏮</button>
+    <button class="jukebox-btn" id="play-pause-btn" onclick="togglePlay()">▶</button>
+    <button class="jukebox-btn" onclick="nextSong()">⏭</button>
+  </div>
+  <div class="volume-row">
+    <span>🔈</span>
+    <input type="range" min="0" max="100" value="50" oninput="setVolume(this.value)">
+    <span>🔊</span>
+  </div>
+  <div id="jukebox-playlist" class="jukebox-playlist"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox-overlay" class="lightbox-overlay">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="">
+  <p id="lightbox-caption" class="lightbox-caption"></p>
+</div>
+
+<div class="marquee-bar">
+  <marquee scrollamount="5">
+    📷 TANNER CORDALIS PHOTOGRAPHY 📷 &nbsp;&nbsp;&nbsp;
+    CLICK ANY PHOTO TO SEE IT FULL SIZE!!! &nbsp;&nbsp;&nbsp;
+    🐎 ALL PHOTOS TAKEN BY TANNER CORDALIS 🐎 &nbsp;&nbsp;&nbsp;
+    GALLERY UPDATED REGULARLY!!
+  </marquee>
+</div>
+
+<header class="site-header">
+  <div class="horse-row">
+    <span class="spin" style="font-size:2.5em">🐎</span>
+    <span class="site-title">PHOTO GALLERY</span>
+    <span class="spin" style="font-size:2.5em">🐴</span>
+  </div>
+  <div class="header-subtitle">~~* TANNER CORDALIS PHOTOGRAPHY *~~</div>
+  <div class="star-row">
+    <span class="spin-fast">📷</span><span class="wiggle">🌟</span>
+    <span class="spin-fast">📷</span><span class="wiggle">🌟</span>
+    <span class="spin-fast">📷</span>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">🏠 HOME</a>
+  <a href="gallery.html">📷 GALLERY</a>
+  <a href="resume.html">📋 RESUME</a>
+  <a href="about.html">🐎 ABOUT ME</a>
+</nav>
+
+<div class="marquee-bar-2">
+  <marquee scrollamount="3" direction="right">
+    🌟 CLICK ANY PHOTO TO SEE IT BIGGER!! 🌟 &nbsp;&nbsp;
+    🐎 ALL RIGHTS RESERVED — TANNER CORDALIS PHOTOGRAPHY 🐎
+  </marquee>
+</div>
+
+<div class="page-wrapper">
+
+  <div class="retro-box retro-box-gold" style="text-align:center; padding:15px; margin-bottom:14px">
+    <h2 style="border-color:#ffd700">📸 MY PHOTOGRAPHY 📸</h2>
+    <p style="color:#fff; font-size:1.05em; line-height:1.6">
+      Welcome to my gallery!! I love photography and this is where I put all my best shots.<br>
+      <span class="blink" style="color:#ff0000; font-size:1.1em">
+        ★ CLICK ANY PHOTO TO SEE IT FULL SIZE!! ★
+      </span>
+    </p>
+  </div>
+
+  <!-- ================================================================
+    HOW TO ADD YOUR OWN PHOTOS — READ THIS!!
+    ================================================================
+
+    STEP 1: Upload your photo file to the "photos/" folder on GitHub
+            (drag and drop it right into the folder on GitHub.com)
+
+    STEP 2: Copy one of the photo-card blocks below (from <div class="photo-card">
+            to the matching </div>)
+
+    STEP 3: Change these three things:
+      - src="photos/YOUR_FILENAME.jpg"         ← your actual file name
+      - data-caption="Your full description"    ← shown when clicked (can be long!)
+      - photo-title text                        ← bold title under thumbnail
+      - caption text                            ← short description under thumbnail
+
+    STEP 4: Save the file and push to GitHub — it's live immediately!
+
+    TIP: You can have as many photos as you want. Just keep copying the block!
+    ================================================================ -->
+
+  <div class="gallery-grid">
+
+    <!-- ===== PHOTO 1 — replace with your real photo! ===== -->
+    <div class="photo-card">
+      <img
+        src="photos/photo1.jpg"
+        alt="My photograph"
+        data-caption="Write your full description here — this shows when someone clicks the photo. Can be as long as you want!"
+        onclick="openLightbox(this.src, this.dataset.caption)"
+      >
+      <p class="photo-title">Your Photo Title Here</p>
+      <p class="caption">Short description — location, date, whatever you want</p>
+    </div>
+
+    <!-- ===== PHOTO 2 ===== -->
+    <div class="photo-card">
+      <img
+        src="photos/photo2.jpg"
+        alt="My photograph"
+        data-caption="Full description for photo 2. Tell the story behind this shot!"
+        onclick="openLightbox(this.src, this.dataset.caption)"
+      >
+      <p class="photo-title">Another Great Shot</p>
+      <p class="caption">What's in this photo and where you took it</p>
+    </div>
+
+    <!-- ===== PHOTO 3 ===== -->
+    <div class="photo-card">
+      <img
+        src="photos/photo3.jpg"
+        alt="My photograph"
+        data-caption="Full description for photo 3."
+        onclick="openLightbox(this.src, this.dataset.caption)"
+      >
+      <p class="photo-title">Photo Three</p>
+      <p class="caption">Caption goes here</p>
+    </div>
+
+    <!-- ===== PHOTO 4 ===== -->
+    <div class="photo-card">
+      <img
+        src="photos/photo4.jpg"
+        alt="My photograph"
+        data-caption="Full description for photo 4."
+        onclick="openLightbox(this.src, this.dataset.caption)"
+      >
+      <p class="photo-title">Photo Four</p>
+      <p class="caption">Caption goes here</p>
+    </div>
+
+    <!-- ===== PHOTO 5 ===== -->
+    <div class="photo-card">
+      <img
+        src="photos/photo5.jpg"
+        alt="My photograph"
+        data-caption="Full description for photo 5."
+        onclick="openLightbox(this.src, this.dataset.caption)"
+      >
+      <p class="photo-title">Photo Five</p>
+      <p class="caption">Caption goes here</p>
+    </div>
+
+    <!-- ===== PHOTO 6 ===== -->
+    <div class="photo-card">
+      <img
+        src="photos/photo6.jpg"
+        alt="My photograph"
+        data-caption="Full description for photo 6."
+        onclick="openLightbox(this.src, this.dataset.caption)"
+      >
+      <p class="photo-title">Photo Six</p>
+      <p class="caption">Caption goes here</p>
+    </div>
+
+    <!--
+      ===== ADD MORE PHOTOS — COPY THIS BLOCK =====
+
+      <div class="photo-card">
+        <img
+          src="photos/YOURFILENAME.jpg"
+          alt="My photograph"
+          data-caption="Your full click-to-see description here"
+          onclick="openLightbox(this.src, this.dataset.caption)"
+        >
+        <p class="photo-title">YOUR TITLE</p>
+        <p class="caption">Your short caption</p>
+      </div>
+
+      =============================================
+    -->
+
+  </div><!-- end gallery-grid -->
+
+</div><!-- end page-wrapper -->
+
+<footer>
+  <div class="gif-divider">🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎</div>
+  <p style="margin-top:10px">
+    <span class="rainbow">★ TANNER CORDALIS PHOTOGRAPHY ★</span>
+    &bull; <a href="mailto:tannercordalis@yahoo.com">tannercordalis@yahoo.com</a>
+  </p>
+  <p style="margin-top:5px; font-size:0.8em; color:#555">
+    &copy; 2025 Tanner Cordalis &bull; All Rights Reserved
+  </p>
+</footer>
+
+</body>
+</html>

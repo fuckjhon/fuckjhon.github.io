@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>~~* TANNER CORDALIS *~~ Welcome to My World Wide Web Site!!!</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="jukebox.js" defer></script>
+</head>
+<body>
+
+<!-- ============================================================
+     JUKEBOX — copy this exact block into every page
+     ============================================================ -->
+<div id="jukebox">
+  <h3>🎵 JUKEBOX 🎵</h3>
+  <span class="jukebox-horse">🐎</span>
+  <div id="song-display"><span id="song-title-scroll">♪ Press play! ♪</span></div>
+  <div class="jukebox-controls">
+    <button class="jukebox-btn" onclick="prevSong()">⏮</button>
+    <button class="jukebox-btn" id="play-pause-btn" onclick="togglePlay()">▶</button>
+    <button class="jukebox-btn" onclick="nextSong()">⏭</button>
+  </div>
+  <div class="volume-row">
+    <span>🔈</span>
+    <input type="range" min="0" max="100" value="50" oninput="setVolume(this.value)">
+    <span>🔊</span>
+  </div>
+  <div id="jukebox-playlist" class="jukebox-playlist"></div>
+</div>
+
+<!-- LIGHTBOX (hidden) -->
+<div id="lightbox-overlay" class="lightbox-overlay">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="">
+  <p id="lightbox-caption" class="lightbox-caption"></p>
+</div>
+
+<!-- ============================================================
+     TOP MARQUEE
+     ============================================================ -->
+<div class="marquee-bar">
+  <marquee scrollamount="6">
+    🐎 WELCOME TO TANNER CORDALIS'S OFFICIAL WORLD WIDE WEB SITE!!! 🐎
+    &nbsp;&nbsp;&nbsp;
+    PHOTOGRAPHER &bull; EDUCATOR &bull; SPEECH-LANGUAGE PATHOLOGY STUDENT &bull; HORSE ENTHUSIAST
+    &nbsp;&nbsp;&nbsp;
+    🐎 EST. 2025 &bull; CHANDLER, AZ 🐎
+    &nbsp;&nbsp;&nbsp;
+    SITE IS ALWAYS GROWING — CHECK BACK OFTEN!!!
+    &nbsp;&nbsp;&nbsp;
+    🐎 WELCOME TO TANNER CORDALIS'S OFFICIAL WORLD WIDE WEB SITE!!! 🐎
+  </marquee>
+</div>
+
+<!-- ============================================================
+     MAIN HEADER
+     ============================================================ -->
+<header class="site-header">
+  <div class="horse-row">
+    <!--
+      SPINNING HORSE GIFS:
+      1. Go to gifcities.org and search "horse" — download a good one
+      2. Save it as "gifs/horse-spin.gif"
+      3. The img tag below will automatically show it!
+         (If the file is missing, the spinning emoji shows instead — no broken image)
+    -->
+    <img src="gifs/horse-spin.gif" class="spinning-horse-img" alt="🐎"
+         onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'spin',style:'font-size:3em',textContent:'🐎'}))">
+    <span class="spin" style="font-size:2.5em">🐎</span>
+
+    <span class="site-title">TANNER CORDALIS</span>
+
+    <span class="spin" style="font-size:2.5em">🐴</span>
+    <img src="gifs/horse-spin.gif" class="spinning-horse-img" alt="🐎"
+         onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'spin',style:'font-size:3em',textContent:'🐎'}))">
+  </div>
+
+  <div class="header-subtitle">~~* PHOTOGRAPHER &diams; EDUCATOR &diams; FUTURE SLPA *~~</div>
+
+  <div class="star-row">
+    <span class="spin-fast">⭐</span><span class="wiggle">🌟</span>
+    <span class="spin-fast">⭐</span><span class="wiggle">🌟</span>
+    <span class="spin-fast">⭐</span><span class="wiggle">🌟</span>
+    <span class="spin-fast">⭐</span><span class="wiggle">🌟</span>
+    <span class="spin-fast">⭐</span>
+  </div>
+</header>
+
+<!-- ============================================================
+     NAVIGATION
+     ============================================================ -->
+<nav>
+  <a href="index.html">🏠 HOME</a>
+  <a href="gallery.html">📷 GALLERY</a>
+  <a href="resume.html">📋 RESUME</a>
+  <a href="about.html">🐎 ABOUT ME</a>
+</nav>
+
+<div class="marquee-bar-2">
+  <marquee scrollamount="4" direction="right">
+    🌟 NEW PHOTOS ADDED REGULARLY!! 🌟 &nbsp;&nbsp;
+    CHECK OUT THE GALLERY!!! &nbsp;&nbsp;
+    🐎 HORSE POWERED SINCE 2025 🐎 &nbsp;&nbsp;
+    ARIZONA STATE UNIVERSITY &bull; GPA 3.75 &nbsp;&nbsp;
+    🌟 THIS SITE IS ALWAYS GROWING!!! 🌟
+  </marquee>
+</div>
+
+<!-- ============================================================
+     MAIN CONTENT
+     ============================================================ -->
+<div class="page-wrapper">
+
+  <!-- UNDER CONSTRUCTION NOTICE -->
+  <div class="construction-bar">
+    ⚠️ THIS SITE IS ALWAYS UNDER CONSTRUCTION — CHECK BACK OFTEN! ⚠️
+  </div>
+
+  <div class="gif-divider">🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎</div>
+
+  <!-- ROW 1: Welcome + Hire Me + Visitor Counter -->
+  <table width="100%" cellspacing="8" cellpadding="0">
+    <tr valign="top">
+
+      <td width="58%">
+        <div class="retro-box retro-box-gold">
+          <h2 style="border-color:#ffd700">🐎 HOWDY PARTNER!! 🐎</h2>
+          <p style="color:#fff; font-size:1.05em; line-height:1.7">
+            <span class="rainbow" style="font-size:1.4em; font-weight:bold">WELCOME!!!</span>
+            You have found the official internet home of
+            <strong style="color:#ffd700">Tanner Cordalis</strong>!
+            <br><br>
+            I am a <strong style="color:#ff69b4">photographer</strong>,
+            an <strong style="color:#00ff88">educator</strong>, and a
+            <strong style="color:#ffaa00">Speech-Language Pathology student</strong>
+            at Arizona State University.
+            This here website is my little corner of the internet where I show off my photos,
+            share what I&rsquo;m about, and let future employers know I&rsquo;m open for business!
+            <br><br>
+            <span class="blink" style="color:#ff0000; font-size:1.2em">
+              &#9733; SCROLL DOWN FOR MORE!! &#9733;
+            </span>
+          </p>
+        </div>
+
+        <!-- Horse facts box -->
+        <div class="retro-box retro-box-green" style="margin-top:8px">
+          <h2 style="border-color:#00ff00">🐴 FUN HORSE FACTS!! 🐴</h2>
+          <ul style="color:#00ff88; list-style:none; padding:0; font-size:0.9em; line-height:2">
+            <li>🐎 Horses can sleep both standing up AND lying down!!</li>
+            <li>🐎 A horse&rsquo;s teeth take up MORE space than their brain!!</li>
+            <li>🐎 Horses have nearly 360-degree vision!!</li>
+            <li>🐎 Baby foals can walk within HOURS of being born!!</li>
+            <li>🐎 The oldest horse ever lived to be 62 years old!!</li>
+          </ul>
+          <div style="text-align:center; font-size:2.5em"><span class="spin">🐎</span></div>
+        </div>
+      </td>
+
+      <td width="42%">
+        <!-- HIRE ME -->
+        <div class="retro-box retro-box-pink">
+          <h2 style="border-color:#ff69b4">💼 EMPLOYERS!! 💼</h2>
+          <p style="color:#fff; text-align:center; font-size:1.05em; margin-bottom:10px">
+            Looking for someone awesome?<br>
+            <span class="blink" style="color:#ffff00">LOOK NO FURTHER!!</span>
+          </p>
+          <a href="resume.html" class="hire-me-btn">
+            🐎 IF YOU'RE LOOKING<br>TO EMPLOY ME<br>CLICK HERE! 🐎
+          </a>
+          <p style="color:#aaa; font-size:0.82em; text-align:center; margin-top:8px">
+            B.S. Speech-Language Pathology (In Progress)<br>
+            ASU &bull; GPA: 3.75 &bull; Chandler, AZ
+          </p>
+        </div>
+
+        <!-- VISITOR COUNTER -->
+        <div class="visitor-counter" style="margin-top:10px">
+          <div style="color:#00aa00; font-size:1em">👁️ YOU ARE VISITOR #</div>
+          <div class="count-num"><span id="visitor-count">0000000</span></div>
+          <div style="color:#006600; font-size:0.8em">TO THIS SITE!!! WOW!!!</div>
+        </div>
+
+        <!-- ABOUT ASU BOX -->
+        <div class="retro-box" style="border-color:#8b0000; margin-top:8px">
+          <h2 style="border-color:#8b0000; color:#ff6600">🎓 GO DEVILS!! 🎓</h2>
+          <p style="color:#ff8800; font-size:0.92em; line-height:1.7">
+            Studying at <strong>Arizona State University</strong><br>
+            in Tempe, AZ.<br>
+            <span style="color:#ffff00">B.S. Speech-Language Pathology</span><br>
+            GPA: <span class="blink" style="color:#ff3300">3.75</span> 🔥<br>
+            Aug 2022 – Present
+          </p>
+        </div>
+      </td>
+
+    </tr>
+  </table>
+
+  <div class="gif-divider" style="color:#ff69b4">
+    💖 💖 💖 💖 💖 💖 💖 💖 💖 💖 💖 💖 💖 💖 💖
+  </div>
+
+  <!-- ROW 2: Gallery Preview + What I Do -->
+  <table width="100%" cellspacing="8" cellpadding="0">
+    <tr valign="top">
+
+      <td width="62%">
+        <div class="retro-box retro-box-blue">
+          <h2 style="border-color:#0088ff">📷 PHOTO GALLERY PREVIEW 📷</h2>
+          <p style="color:#fff; margin-bottom:10px; font-size:1em">
+            I am a photographer! Here are some of my latest shots.
+            <a href="gallery.html" style="color:#00ffff; font-weight:bold">
+              &rarr; SEE ALL PHOTOS!!!
+            </a>
+          </p>
+          <!--
+            HOMEPAGE PREVIEW PHOTOS:
+            Change the src values to 3 of your actual photo filenames!
+            Example: src="photos/sunset.jpg"
+          -->
+          <table width="100%">
+            <tr>
+              <td width="33%" style="padding:3px">
+                <img src="photos/preview1.jpg" width="100%"
+                     style="border:3px solid #0088ff; height:110px; object-fit:cover; display:block; background:#111"
+                     alt="📷" onerror="this.style.background='#111'; this.alt='📷 coming soon'">
+              </td>
+              <td width="33%" style="padding:3px">
+                <img src="photos/preview2.jpg" width="100%"
+                     style="border:3px solid #0088ff; height:110px; object-fit:cover; display:block; background:#111"
+                     alt="📷" onerror="this.style.background='#111'; this.alt='📷 coming soon'">
+              </td>
+              <td width="33%" style="padding:3px">
+                <img src="photos/preview3.jpg" width="100%"
+                     style="border:3px solid #0088ff; height:110px; object-fit:cover; display:block; background:#111"
+                     alt="📷" onerror="this.style.background='#111'; this.alt='📷 coming soon'">
+              </td>
+            </tr>
+          </table>
+          <p style="text-align:center; margin-top:12px">
+            <a href="gallery.html"
+               style="color:#ffff00; font-size:1.2em; font-weight:bold;
+                      background:#000080; padding:6px 18px;
+                      border:3px outset #0088ff; text-decoration:none">
+              ✨ SEE ALL MY PHOTOS ✨
+            </a>
+          </p>
+        </div>
+      </td>
+
+      <td width="38%">
+        <div class="retro-box" style="border-color:#ff6600">
+          <h2 style="border-color:#ff6600">🌟 WHAT I DO!! 🌟</h2>
+          <table width="100%" cellspacing="4">
+            <tr>
+              <td style="background:#6b0000; border:2px outset #ff0000; padding:8px; color:#fff; text-align:center">
+                📷<br><strong>PHOTOGRAPHY</strong><br><span style="font-size:0.8em; color:#ffaaaa">See the gallery!</span>
+              </td>
+              <td style="background:#003800; border:2px outset #00aa00; padding:8px; color:#fff; text-align:center">
+                🧠<br><strong>SPEECH &amp; LANGUAGE</strong><br><span style="font-size:0.8em; color:#aaffaa">Future SLPA</span>
+              </td>
+            </tr>
+            <tr>
+              <td style="background:#003366; border:2px outset #0055cc; padding:8px; color:#fff; text-align:center; margin-top:4px">
+                👨‍🏫<br><strong>EDUCATOR</strong><br><span style="font-size:0.8em; color:#aaaaff">Boys &amp; Girls Club</span>
+              </td>
+              <td style="background:#550055; border:2px outset #cc00cc; padding:8px; color:#fff; text-align:center">
+                💻<br><strong>STEM &amp; ROBOTICS</strong><br><span style="font-size:0.8em; color:#ffaaff">130+ youth!</span>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+        <div class="retro-box retro-box-gold" style="margin-top:8px">
+          <h2 style="border-color:#ffd700">🏆 CERTS!! 🏆</h2>
+          <p style="color:#fff; font-size:0.9em; line-height:2">
+            <span class="cert-badge" style="background:#8b0000; border-color:#ff0000">✅ AZ SLPA</span>
+            <span class="cert-badge" style="background:#885500; border-color:#ffaa00">✅ CPR</span>
+            <span class="cert-badge" style="background:#006600; border-color:#00cc00">✅ First Aid</span>
+            <span class="cert-badge" style="background:#000088; border-color:#0088ff">✅ Article 9</span>
+          </p>
+        </div>
+      </td>
+
+    </tr>
+  </table>
+
+  <!-- BIG CHAOS MARQUEE AT BOTTOM -->
+  <div style="background:#000; border:3px solid #ff00ff; padding:5px; margin:10px 0">
+    <marquee scrollamount="9" style="color:#ff00ff; font-size:1.2em; font-weight:bold">
+      🐎🐎🐎 THIS WEBSITE WAS MADE WITH LOVE AND HORSE ENERGY 🐎🐎🐎
+      &nbsp;&nbsp;&nbsp;
+      EMAIL: tannercordalis@yahoo.com
+      &nbsp;&nbsp;&nbsp;
+      PHONE: (480) 818-9527
+      &nbsp;&nbsp;&nbsp;
+      🐎🐎🐎 CHANDLER AZ &bull; ASU &bull; BOYS &amp; GIRLS CLUB 🐎🐎🐎
+    </marquee>
+  </div>
+
+  <div class="gif-divider" style="color:#ffd700">
+    ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐ ⭐
+  </div>
+
+</div><!-- end page-wrapper -->
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="gif-divider">🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎</div>
+  <p style="margin-top:10px">
+    <span class="rainbow">★ TANNER CORDALIS ★</span>
+    &bull; Chandler, AZ &bull;
+    <a href="mailto:tannercordalis@yahoo.com">tannercordalis@yahoo.com</a>
+    &bull; (480) 818-9527
+  </p>
+  <p style="margin-top:6px; font-size:0.8em">
+    Best viewed in 800&times;600 resolution &bull;
+    <span class="blink">Netscape Navigator 4.0</span>
+  </p>
+  <p style="margin-top:5px; font-size:0.8em; color:#555">
+    &copy; 2025 Tanner Cordalis &bull; All Rights Reserved &bull;
+    Powered by Horse Energy&trade; and Good Vibes
+  </p>
+  <div style="margin-top:10px; font-size:2em">🐎 🌟 🐎 🌟 🐎</div>
+</footer>
+
+</body>
+</html>

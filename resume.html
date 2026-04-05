@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RESUME — Tanner Cordalis</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="jukebox.js" defer></script>
+</head>
+<body>
+
+<!-- JUKEBOX -->
+<div id="jukebox">
+  <h3>🎵 JUKEBOX 🎵</h3>
+  <span class="jukebox-horse">🐎</span>
+  <div id="song-display"><span id="song-title-scroll">♪ Press play! ♪</span></div>
+  <div class="jukebox-controls">
+    <button class="jukebox-btn" onclick="prevSong()">⏮</button>
+    <button class="jukebox-btn" id="play-pause-btn" onclick="togglePlay()">▶</button>
+    <button class="jukebox-btn" onclick="nextSong()">⏭</button>
+  </div>
+  <div class="volume-row">
+    <span>🔈</span>
+    <input type="range" min="0" max="100" value="50" oninput="setVolume(this.value)">
+    <span>🔊</span>
+  </div>
+  <div id="jukebox-playlist" class="jukebox-playlist"></div>
+</div>
+
+<!-- LIGHTBOX (needed for jukebox.js) -->
+<div id="lightbox-overlay" class="lightbox-overlay">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="">
+  <p id="lightbox-caption" class="lightbox-caption"></p>
+</div>
+
+<div class="marquee-bar">
+  <marquee scrollamount="5">
+    💼 TANNER CORDALIS — PROFESSIONAL RESUME 💼 &nbsp;&nbsp;&nbsp;
+    ASPIRING EDUCATOR &bull; SLPA-IN-TRAINING &bull; TECHNOLOGY COORDINATOR &nbsp;&nbsp;&nbsp;
+    💼 AVAILABLE FOR HIRE!! 💼 &nbsp;&nbsp;&nbsp;
+    🐎 HORSE-POWERED PROFESSIONALISM 🐎
+  </marquee>
+</div>
+
+<header class="site-header">
+  <div class="horse-row">
+    <span class="spin" style="font-size:2.5em">🐎</span>
+    <span class="site-title">MY RESUME</span>
+    <span class="spin" style="font-size:2.5em">🐴</span>
+  </div>
+  <div class="header-subtitle">~~* I AM AVAILABLE FOR EMPLOYMENT!! *~~</div>
+  <div class="star-row">
+    <span class="wiggle">💼</span><span class="spin-fast">⭐</span>
+    <span class="wiggle">💼</span><span class="spin-fast">⭐</span>
+    <span class="wiggle">💼</span>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">🏠 HOME</a>
+  <a href="gallery.html">📷 GALLERY</a>
+  <a href="resume.html">📋 RESUME</a>
+  <a href="about.html">🐎 ABOUT ME</a>
+</nav>
+
+<div class="marquee-bar-2">
+  <marquee scrollamount="4" direction="right">
+    🐎 GPA: 3.75 🐎 &nbsp;&nbsp;
+    Technology &amp; Education Coordinator — Boys &amp; Girls Club of the Valley &nbsp;&nbsp;
+    🐎 ASU Speech-Language Pathology Student 🐎
+  </marquee>
+</div>
+
+<div class="page-wrapper">
+
+  <!-- TOP HIRE ME BANNER -->
+  <div style="text-align:center; margin:14px 0">
+    <div style="background:#000; border:5px solid #ff0000; padding:16px; display:inline-block; max-width:600px; width:100%">
+      <p style="color:#ff0000; font-size:1.4em; font-weight:bold; margin:0 0 8px"
+         class="blink">⚠️ ATTENTION EMPLOYERS!! ⚠️</p>
+      <p style="color:#fff; margin:0 0 12px; font-size:1em">
+        You can read my full resume below, or download it as a PDF!
+      </p>
+
+      <!--
+        PDF DOWNLOAD BUTTON:
+        1. Export your resume as a PDF (File > Save As > PDF in Word)
+        2. Upload it to GitHub named "Tanner_Cordalis_Resume.pdf"
+        3. Delete the <!-- and the --> lines around the <a> tag below to enable it!
+      -->
+      <!-- UNCOMMENT THIS WHEN YOU UPLOAD THE PDF:
+      <a href="Tanner_Cordalis_Resume.pdf" download class="hire-me-btn" style="font-size:1.1em; margin-bottom:8px">
+        📄 DOWNLOAD MY RESUME AS PDF 📄
+      </a>
+      -->
+
+      <a href="mailto:tannercordalis@yahoo.com" class="hire-me-btn" style="font-size:1.2em">
+        🐎 IF YOU'RE LOOKING TO EMPLOY ME CLICK HERE! 🐎
+      </a>
+      <p style="color:#888; font-size:0.8em; margin-top:8px">
+        (clicking opens your email app to contact me directly)
+      </p>
+    </div>
+  </div>
+
+  <!-- ============================================================
+    RESUME CONTENT
+    To update anything here, just find the text and change it!
+    ============================================================ -->
+
+  <!-- NAME & CONTACT -->
+  <div class="resume-section" style="text-align:center">
+    <h1 style="color:#ffd700; font-size:2.2em; margin-bottom:6px">TANNER CORDALIS</h1>
+    <p style="color:#aaa; font-size:1.05em">
+      Chandler, AZ 85249 &bull;
+      <a href="mailto:tannercordalis@yahoo.com" style="color:#00ffff">tannercordalis@yahoo.com</a>
+      &bull; (480) 818-9527
+    </p>
+    <p style="color:#ff69b4; font-style:italic; margin-top:6px">
+      B.S. Speech-Language Pathology, Arizona State University (In Progress) &bull; GPA: 3.75
+    </p>
+  </div>
+
+  <!-- OBJECTIVE -->
+  <div class="resume-section">
+    <h2>🎯 OBJECTIVE</h2>
+    <p style="color:#ddd; line-height:1.75; font-size:1.02em">
+      Aspiring educator and SLPA-in-training with hands-on experience designing curriculum,
+      supporting diverse learners, and building communication skills in students. Seeking a
+      teaching or instructional support role where I can apply my background in speech-language
+      pathology, IEP collaboration, and youth development.
+    </p>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="resume-section">
+    <h2>🎓 EDUCATION</h2>
+
+    <h3>B.S. Speech-Language Pathology (In Progress)</h3>
+    <p class="job-meta">Arizona State University, Tempe, AZ &bull; Aug 2022 – Present</p>
+    <ul>
+      <li>GPA: <strong style="color:#ffd700">3.75</strong></li>
+      <li>Coursework includes Language Development, Phonetics, Anatomy of Speech,
+          Augmentative and Alternative Communication (AAC), and Clinical Practicum</li>
+      <li>Completed training in IEP documentation, goal-setting frameworks, and
+          collaborative educational planning</li>
+    </ul>
+
+    <h3>High School Diploma</h3>
+    <p class="job-meta">Basha High School, Chandler, AZ &bull; May 2022</p>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="resume-section">
+    <h2>💼 EXPERIENCE</h2>
+
+    <h3>Technology &amp; Education Coordinator</h3>
+    <p class="job-meta">Boys &amp; Girls Club of the Valley, Chandler, AZ &bull; July 2023 – Present</p>
+    <ul>
+      <li>Designed and delivered STEM curriculum for 130+ youth ages 6–14, covering coding,
+          robotics, 3D design, and digital art</li>
+      <li>Adapted instructional strategies for students with varying ability levels, including
+          those with learning differences and speech-language needs</li>
+      <li>Used clear expectations, consistent routines, positive reinforcement, and logical
+          consequences to maintain a structured learning environment</li>
+      <li>Collaborated with staff across teams to support student behavior, communication,
+          and academic needs during daily programming</li>
+      <li>Built positive relationships with students and families to support engagement,
+          attendance, and student success</li>
+    </ul>
+
+    <h3>Speech-Language Pathology Practicum Observer</h3>
+    <p class="job-meta">ASU Clinical Services, Tempe, AZ &bull; Jan 2024 – Present</p>
+    <ul>
+      <li>Observed and assisted licensed SLPs conducting articulation, language, and fluency
+          assessments for school-age children</li>
+      <li>Contributed to progress notes and IEP goal tracking under clinical supervision</li>
+      <li>Practiced administering AAC supports and applying evidence-based intervention
+          strategies in real sessions</li>
+    </ul>
+  </div>
+
+  <!-- SKILLS & CERTIFICATIONS -->
+  <div class="resume-section">
+    <h2>⚡ SKILLS &amp; CERTIFICATIONS</h2>
+
+    <h3>Certifications</h3>
+    <p style="line-height:2.2; margin-bottom:6px">
+      <span class="cert-badge" style="background:#8b0000; border-color:#ff0000; color:#fff">✅ Arizona SLPA</span>
+      <span class="cert-badge" style="background:#885500; border-color:#ffaa00; color:#fff">✅ CPR</span>
+      <span class="cert-badge" style="background:#006600; border-color:#00cc00; color:#fff">✅ First Aid</span>
+      <span class="cert-badge" style="background:#000088; border-color:#0088ff; color:#fff">✅ Article 9 (exp. Jan 2029)</span>
+    </p>
+
+    <h3>Clinical Skills</h3>
+    <ul>
+      <li>IEP documentation and goal alignment</li>
+      <li>AAC device support</li>
+      <li>Language and articulation screening</li>
+      <li>Progress monitoring</li>
+    </ul>
+
+    <h3>Instructional Skills</h3>
+    <ul>
+      <li>Differentiated instruction &amp; curriculum design</li>
+      <li>Classroom &amp; behavior management</li>
+      <li>Positive reinforcement systems</li>
+      <li>Relationship building &amp; family communication</li>
+      <li>Assistive technology integration</li>
+      <li>Collaboration across teams</li>
+    </ul>
+
+    <h3>Professional Highlights</h3>
+    <ul>
+      <li>Promoted into a full-time Technology Coordinator role based on leadership,
+          reliability, and strong work with students</li>
+      <li>Designed engaging student programs blending behavior systems, technology,
+          creativity, and hands-on learning</li>
+      <li>Strong experience working with students across ability levels, including those
+          needing extra academic, language, or behavioral support</li>
+    </ul>
+  </div>
+
+  <!-- BOTTOM CTA -->
+  <div style="text-align:center; margin:20px 0 10px">
+    <a href="mailto:tannercordalis@yahoo.com" class="hire-me-btn" style="max-width:550px; margin:0 auto">
+      🐎 IF YOU'RE LOOKING TO EMPLOY ME CLICK HERE! 🐎
+    </a>
+  </div>
+
+</div><!-- end page-wrapper -->
+
+<footer>
+  <div class="gif-divider">🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎</div>
+  <p style="margin-top:10px">
+    <span class="rainbow">★ TANNER CORDALIS ★</span>
+    &bull; Chandler, AZ &bull;
+    <a href="mailto:tannercordalis@yahoo.com">tannercordalis@yahoo.com</a>
+    &bull; (480) 818-9527
+  </p>
+  <p style="margin-top:5px; font-size:0.8em; color:#555">
+    &copy; 2025 Tanner Cordalis &bull; All Rights Reserved &bull;
+    Powered by Horse Energy&trade; and Good Vibes
+  </p>
+</footer>
+
+</body>
+</html>

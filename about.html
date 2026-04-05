@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ABOUT ME — Tanner Cordalis</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="jukebox.js" defer></script>
+</head>
+<body>
+
+<!-- JUKEBOX -->
+<div id="jukebox">
+  <h3>🎵 JUKEBOX 🎵</h3>
+  <span class="jukebox-horse">🐎</span>
+  <div id="song-display"><span id="song-title-scroll">♪ Press play! ♪</span></div>
+  <div class="jukebox-controls">
+    <button class="jukebox-btn" onclick="prevSong()">⏮</button>
+    <button class="jukebox-btn" id="play-pause-btn" onclick="togglePlay()">▶</button>
+    <button class="jukebox-btn" onclick="nextSong()">⏭</button>
+  </div>
+  <div class="volume-row">
+    <span>🔈</span>
+    <input type="range" min="0" max="100" value="50" oninput="setVolume(this.value)">
+    <span>🔊</span>
+  </div>
+  <div id="jukebox-playlist" class="jukebox-playlist"></div>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox-overlay" class="lightbox-overlay">
+  <span class="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" class="lightbox-img" src="" alt="">
+  <p id="lightbox-caption" class="lightbox-caption"></p>
+</div>
+
+<div class="marquee-bar">
+  <marquee scrollamount="5">
+    🐎 ABOUT TANNER CORDALIS 🐎 &nbsp;&nbsp;&nbsp;
+    PHOTOGRAPHER &bull; EDUCATOR &bull; FUTURE SLPA &bull; HORSE ENTHUSIAST &nbsp;&nbsp;&nbsp;
+    🐎 CHANDLER, AZ &bull; ARIZONA STATE UNIVERSITY 🐎
+  </marquee>
+</div>
+
+<header class="site-header">
+  <div class="horse-row">
+    <span class="spin" style="font-size:2.5em">🐎</span>
+    <span class="site-title">ABOUT ME</span>
+    <span class="spin" style="font-size:2.5em">🐴</span>
+  </div>
+  <div class="header-subtitle">~~* THE STORY OF TANNER CORDALIS *~~</div>
+  <div class="star-row">
+    <span class="spin-fast">⭐</span><span class="wiggle">🐎</span>
+    <span class="spin-fast">⭐</span><span class="wiggle">🐎</span>
+    <span class="spin-fast">⭐</span>
+  </div>
+</header>
+
+<nav>
+  <a href="index.html">🏠 HOME</a>
+  <a href="gallery.html">📷 GALLERY</a>
+  <a href="resume.html">📋 RESUME</a>
+  <a href="about.html">🐎 ABOUT ME</a>
+</nav>
+
+<div class="marquee-bar-2">
+  <marquee scrollamount="3" direction="right">
+    🌟 GET TO KNOW TANNER!! 🌟 &nbsp;&nbsp;
+    🐎 POWERED BY COFFEE, HORSE ENERGY, AND A 3.75 GPA 🐎
+  </marquee>
+</div>
+
+<div class="page-wrapper">
+
+  <table width="100%" cellspacing="10" cellpadding="0">
+    <tr valign="top">
+
+      <td width="55%">
+        <!-- ABOUT ME -->
+        <div class="retro-box retro-box-gold">
+          <h2 style="border-color:#ffd700">🐎 HEY, I'M TANNER!! 🐎</h2>
+          <!--
+            EDIT YOUR BIO HERE!
+            Write whatever you want people to know about you.
+            This is YOUR corner of the internet — make it yours!!
+          -->
+          <p style="color:#fff; font-size:1.05em; line-height:1.8">
+            Hi!! I&rsquo;m <strong style="color:#ffd700">Tanner Cordalis</strong>,
+            based out of <strong style="color:#ff69b4">Chandler, Arizona</strong>.
+            <br><br>
+            I&rsquo;m currently studying
+            <strong style="color:#00ff88">Speech-Language Pathology</strong>
+            at Arizona State University (Go Devils! 😈), and working as a
+            <strong style="color:#ffaa00">Technology &amp; Education Coordinator</strong>
+            at the Boys &amp; Girls Club of the Valley.
+            <br><br>
+            I&rsquo;m also a <strong style="color:#ff69b4">photographer</strong>
+            — check out the gallery to see my work!
+            <br><br>
+            <!--
+              ADD MORE ABOUT YOURSELF HERE!
+              Hobbies, interests, fun facts, anything you want!
+            -->
+            <span style="color:#aaaaaa; font-style:italic">
+              [Add more about yourself here — hobbies, interests, fun facts, etc!]
+            </span>
+          </p>
+        </div>
+
+        <!-- CONTACT BOX -->
+        <div class="retro-box retro-box-blue" style="margin-top:10px">
+          <h2 style="border-color:#0088ff">📬 GET IN TOUCH!! 📬</h2>
+          <p style="color:#fff; font-size:1.05em; line-height:2">
+            📧 Email:
+            <a href="mailto:tannercordalis@yahoo.com"
+               style="color:#00ffff; font-weight:bold">
+              tannercordalis@yahoo.com
+            </a>
+            <br>
+            📞 Phone: <span style="color:#ffff00">(480) 818-9527</span>
+            <br>
+            📍 Location: <span style="color:#ff69b4">Chandler, AZ 85249</span>
+          </p>
+          <!--
+            SOCIAL LINKS — add yours here!
+            Example:
+            <p style="color:#fff; margin-top:10px">
+              📸 Instagram: <a href="https://instagram.com/YOURUSERNAME" style="color:#00ffff">@YOURUSERNAME</a>
+            </p>
+          -->
+        </div>
+      </td>
+
+      <td width="45%">
+        <!-- FUN FACTS -->
+        <div class="retro-box retro-box-pink">
+          <h2 style="border-color:#ff69b4">✨ FUN FACTS ABOUT ME!! ✨</h2>
+          <!--
+            EDIT THESE FUN FACTS — make them actually about you!
+          -->
+          <ul style="color:#fff; list-style:none; padding:0; font-size:0.95em; line-height:2.2">
+            <li>🐎 I love horses (obviously!!!)</li>
+            <li>📷 I am a photographer</li>
+            <li>🎓 Studying at ASU &bull; GPA: 3.75</li>
+            <li>👨‍🏫 Teaching 130+ kids at Boys &amp; Girls Club</li>
+            <li>🤖 I teach kids coding and robotics!!</li>
+            <li>🧠 Future Speech-Language Pathology Assistant</li>
+            <li>📍 Born and raised in Chandler, AZ</li>
+            <!-- ADD YOUR OWN FUN FACTS HERE! -->
+            <li style="color:#aaa; font-style:italic">[Add your own fun facts!]</li>
+          </ul>
+        </div>
+
+        <!-- QUICK STATS -->
+        <div class="retro-box retro-box-green" style="margin-top:10px">
+          <h2 style="border-color:#00ff00">📊 TANNER BY THE NUMBERS!! 📊</h2>
+          <table width="100%" cellspacing="4">
+            <tr>
+              <td style="background:#003300; border:2px outset #00aa00; padding:10px; text-align:center; color:#fff">
+                <div style="font-size:2em; color:#00ff00; font-weight:bold">3.75</div>
+                <div style="font-size:0.85em">GPA at ASU</div>
+              </td>
+              <td style="background:#330000; border:2px outset #aa0000; padding:10px; text-align:center; color:#fff">
+                <div style="font-size:2em; color:#ff6666; font-weight:bold">130+</div>
+                <div style="font-size:0.85em">Youth Taught</div>
+              </td>
+            </tr>
+            <tr>
+              <td style="background:#000033; border:2px outset #0000aa; padding:10px; text-align:center; color:#fff; margin-top:4px">
+                <div style="font-size:2em; color:#6699ff; font-weight:bold">2+</div>
+                <div style="font-size:0.85em">Years at B&amp;GC</div>
+              </td>
+              <td style="background:#330033; border:2px outset #aa00aa; padding:10px; text-align:center; color:#fff">
+                <div style="font-size:2em; color:#ff88ff; font-weight:bold">4</div>
+                <div style="font-size:0.85em">Certifications</div>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </td>
+    </tr>
+  </table>
+
+  <!-- HIRE ME AT BOTTOM -->
+  <div style="text-align:center; margin:16px 0">
+    <a href="resume.html" class="hire-me-btn" style="max-width:500px; margin:0 auto">
+      🐎 IF YOU'RE LOOKING TO EMPLOY ME CLICK HERE! 🐎
+    </a>
+  </div>
+
+</div><!-- end page-wrapper -->
+
+<footer>
+  <div class="gif-divider">🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎 🐎</div>
+  <p style="margin-top:10px">
+    <span class="rainbow">★ TANNER CORDALIS ★</span>
+    &bull; Chandler, AZ &bull;
+    <a href="mailto:tannercordalis@yahoo.com">tannercordalis@yahoo.com</a>
+    &bull; (480) 818-9527
+  </p>
+  <p style="margin-top:5px; font-size:0.8em; color:#555">
+    &copy; 2025 Tanner Cordalis &bull; All Rights Reserved &bull;
+    Powered by Horse Energy&trade; and Good Vibes
+  </p>
+</footer>
+
+</body>
+</html>
