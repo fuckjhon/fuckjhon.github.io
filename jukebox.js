@@ -12,10 +12,8 @@
 
 const SONGS = [
   // ---- ADD YOUR SONGS HERE ----
-  // { title: "Song Name", artist: "Artist", src: "music/song1.mp3" },
-  // { title: "Another Song", artist: "Artist", src: "music/song2.mp3" },
-  // Example with a free public domain song:
-  { title: "Add your songs!", artist: "See jukebox.js for instructions", src: "" },
+  // Format: { title: "Song Name", artist: "Artist", src: "music/filename.mp3" },
+  { title: "Plastic Love", artist: "Mariya Takeuchi", src: "music/plastic-love.mp3" },
 ];
 
 let currentIndex = 0;
