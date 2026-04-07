@@ -14,6 +14,7 @@ const SONGS = [
   // ---- ADD YOUR SONGS HERE ----
   // Format: { title: "Song Name", artist: "Artist", src: "music/filename.mp3" },
   { title: "Plastic Love", artist: "Mariya Takeuchi", src: "music/plastic-love.mp3" },
+  { title: "Bewitched", artist: "Laufey", src: "music/bewitched.mp3" },
 ];
 
 let currentIndex = 0;
@@ -32,16 +33,34 @@ function initJukebox() {
   const savedTime    = parseFloat(sessionStorage.getItem('jukeboxTime') || '0');
   const wasPlaying   = sessionStorage.getItem('jukeboxPlaying') === 'true';
 
-  if (savedIndex !== null) currentIndex = parseInt(savedIndex);
+  if (savedIndex !== null) {
+    // Continuing from another page — pick up where we left off
+    currentIndex = parseInt(savedIndex);
+  } else {
+    // First visit — pick a random song!
+    currentIndex = Math.floor(Math.random() * SONGS.length);
+  }
 
   loadSong(currentIndex, false);
 
   if (savedTime > 0 && audio.src) audio.currentTime = savedTime;
 
-  if (wasPlaying && audio.src) {
+  // Autoplay: try to play immediately (random song on first visit,
+  // or continue song when navigating between pages)
+  if (audio.src) {
     audio.play()
       .then(() => { isPlaying = true; updatePlayBtn(); })
-      .catch(() => { /* browser blocked autoplay — user presses play */ });
+      .catch(() => {
+        // Browser blocked autoplay — add a one-time click listener
+        // so music starts as soon as user clicks ANYTHING on the page
+        const startOnClick = () => {
+          if (!isPlaying && audio.src) {
+            audio.play().then(() => { isPlaying = true; updatePlayBtn(); }).catch(() => {});
+          }
+          document.removeEventListener('click', startOnClick);
+        };
+        document.addEventListener('click', startOnClick);
+      });
   }
 
   // Save state before leaving page so music "continues"
