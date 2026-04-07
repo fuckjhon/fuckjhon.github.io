@@ -11,20 +11,22 @@
 
 <!-- JUKEBOX -->
 <div id="jukebox">
-  <h3>🎵 JUKEBOX 🎵</h3>
-  <span class="jukebox-horse">🐎</span>
-  <div id="song-display"><span id="song-title-scroll">♪ Press play! ♪</span></div>
-  <div class="jukebox-controls">
-    <button class="jukebox-btn" onclick="prevSong()">⏮</button>
-    <button class="jukebox-btn" id="play-pause-btn" onclick="togglePlay()">▶</button>
-    <button class="jukebox-btn" onclick="nextSong()">⏭</button>
+  <div id="jukebox-toggle" onclick="toggleJukebox()">🎵 JUKEBOX 🐎</div>
+  <div id="jukebox-body">
+    <span class="jukebox-horse">🐎</span>
+    <div id="song-display"><span id="song-title-scroll">♪ Press play! ♪</span></div>
+    <div class="jukebox-controls">
+      <button class="jukebox-btn" onclick="prevSong()">⏮</button>
+      <button class="jukebox-btn" id="play-pause-btn" onclick="togglePlay()">▶</button>
+      <button class="jukebox-btn" onclick="nextSong()">⏭</button>
+    </div>
+    <div class="volume-row">
+      <span>🔈</span>
+      <input type="range" min="0" max="100" value="50" oninput="setVolume(this.value)">
+      <span>🔊</span>
+    </div>
+    <div id="jukebox-playlist" class="jukebox-playlist"></div>
   </div>
-  <div class="volume-row">
-    <span>🔈</span>
-    <input type="range" min="0" max="100" value="50" oninput="setVolume(this.value)">
-    <span>🔊</span>
-  </div>
-  <div id="jukebox-playlist" class="jukebox-playlist"></div>
 </div>
 
 <!-- LIGHTBOX (needed for jukebox.js) -->

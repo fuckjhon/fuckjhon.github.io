@@ -78,6 +78,11 @@ function initJukebox() {
   audio.addEventListener('ended', nextSong);
 
   renderPlaylist();
+
+  // Restore collapsed state
+  if (sessionStorage.getItem('jukeboxCollapsed') === 'true') {
+    document.getElementById('jukebox').classList.add('collapsed');
+  }
 }
 
 // ----------------------------------------------------------------
@@ -142,6 +147,13 @@ function prevSong() {
 
 function setVolume(val) {
   if (audio) audio.volume = val / 100;
+}
+
+function toggleJukebox() {
+  const jb = document.getElementById('jukebox');
+  jb.classList.toggle('collapsed');
+  // Remember state
+  sessionStorage.setItem('jukeboxCollapsed', jb.classList.contains('collapsed'));
 }
 
 function playSongAtIndex(index) {
