@@ -11,9 +11,9 @@
 #   Lines starting with # are ignored.
 # ============================================
 
-bridge_walk.jpg.jpg | The Bridge | Walking into the light
-bridge_portrait.jpg.jpg | Bridge Portrait | Golden hour vibes
-baby_beach.jpg.jpg | Beach Baby | First beach trip
+bridge_walk.jpg.jpg | Bridge | Walking into the light
+bridge_portrait.jpg.jpg | Bridges | Golden hour vibes
+baby_beach.jpg.jpg | Baby | First beach trip
 laguna.jpg.jpg | Laguna | Laguna Beach, CA
 rooftop.jpg.JPG | Rooftop | Golden hour, LA
-DSCF3306.jpg | river | Peru
+DSCF3306.jpg | River | Peru
