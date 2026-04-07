@@ -15,6 +15,10 @@ const SONGS = [
   // Format: { title: "Song Name", artist: "Artist", src: "music/filename.mp3" },
   { title: "Plastic Love", artist: "Mariya Takeuchi", src: "music/plastic-love.mp3" },
   { title: "Bewitched", artist: "Laufey", src: "music/bewitched.mp3" },
+  { title: "Last Summer Whisper", artist: "Anri", src: "music/last-summer-whisper.mp3" },
+  { title: "Midnight Cruisin'", artist: "Kingo Hamada", src: "music/midnight-cruisin.mp3" },
+  { title: "Midnight Pretenders", artist: "Tomoko Aran", src: "music/midnight-pretenders.mp3" },
+  { title: "Stay With Me", artist: "Miki Matsubara", src: "music/stay-with-me.mp3" },
 ];
 
 let currentIndex = 0;
