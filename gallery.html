@@ -83,119 +83,57 @@
     </p>
   </div>
 
-  <!-- ================================================================
-    HOW TO ADD YOUR OWN PHOTOS — READ THIS!!
-    ================================================================
+  <!--
+    YOUR GALLERY IS NOW AUTOMATIC!
+    To add photos, just edit "photos.txt" — no HTML needed!
+  -->
 
-    STEP 1: Upload your photo file to the "photos/" folder on GitHub
-            (drag and drop it right into the folder on GitHub.com)
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Photos load automatically from photos.txt -->
+    <p style="color:#aaa; text-align:center; grid-column:1/-1">Loading photos...</p>
+  </div>
 
-    STEP 2: Copy one of the photo-card blocks below (from <div class="photo-card">
-            to the matching </div>)
+  <script>
+  // Loads gallery automatically from photos.txt
+  // Format: filename | Title | Caption (one per line, # = comment)
+  fetch('photos.txt')
+    .then(r => r.text())
+    .then(text => {
+      const grid = document.getElementById('gallery-grid');
+      grid.innerHTML = '';
+      const lines = text.split('\n')
+        .map(l => l.trim())
+        .filter(l => l && !l.startsWith('#'));
 
-    STEP 3: Change these three things:
-      - src="photos/YOUR_FILENAME.jpg"         ← your actual file name
-      - data-caption="Your full description"    ← shown when clicked (can be long!)
-      - photo-title text                        ← bold title under thumbnail
-      - caption text                            ← short description under thumbnail
+      if (!lines.length) {
+        grid.innerHTML = '<p style="color:#ff0;grid-column:1/-1;text-align:center">No photos yet! Add them to photos.txt</p>';
+        return;
+      }
 
-    STEP 4: Save the file and push to GitHub — it's live immediately!
+      lines.forEach(line => {
+        const parts = line.split('|').map(s => s.trim());
+        if (parts.length < 2) return;
+        const filename = parts[0];
+        const title    = parts[1];
+        const caption  = parts[2] || '';
+        const src      = 'photos/' + filename;
 
-    TIP: You can have as many photos as you want. Just keep copying the block!
-    ================================================================ -->
-
-  <div class="gallery-grid">
-
-    <!-- ===== PHOTO 1 ===== -->
-    <div class="photo-card">
-      <img
-        src="photos/bridge_walk.jpg.jpg"
-        alt="My photograph"
-        data-caption="Two friends on a bridge."
-        onclick="openLightbox(this.src, this.dataset.caption)"
-      >
-      <p class="photo-title">The Bridge</p>
-      <p class="caption">Walking into the light</p>
-    </div>
-
-    <!-- ===== PHOTO 2 ===== -->
-    <div class="photo-card">
-      <img
-        src="photos/bridge_portrait.jpg.jpg"
-        alt="My photograph"
-        data-caption="Portrait on the bridge."
-        onclick="openLightbox(this.src, this.dataset.caption)"
-      >
-      <p class="photo-title">Bridge Portrait</p>
-      <p class="caption">Golden hour vibes</p>
-    </div>
-
-    <!-- ===== PHOTO 3 ===== -->
-    <div class="photo-card">
-      <img
-        src="photos/baby_beach.jpg.jpg"
-        alt="My photograph"
-        data-caption="Baby at the beach."
-        onclick="openLightbox(this.src, this.dataset.caption)"
-      >
-      <p class="photo-title">Beach Baby</p>
-      <p class="caption">First beach trip</p>
-    </div>
-
-    <!-- ===== PHOTO 4 ===== -->
-    <div class="photo-card">
-      <img
-        src="photos/laguna.jpg.jpg"
-        alt="My photograph"
-        data-caption="Laguna Beach."
-        onclick="openLightbox(this.src, this.dataset.caption)"
-      >
-      <p class="photo-title">Laguna</p>
-      <p class="caption">Laguna Beach, CA</p>
-    </div>
-
-    <!-- ===== PHOTO 5 ===== -->
-    <div class="photo-card">
-      <img
-        src="photos/rooftop.jpg.JPG"
-        alt="My photograph"
-        data-caption="Rooftop golden hour."
-        onclick="openLightbox(this.src, this.dataset.caption)"
-      >
-      <p class="photo-title">Rooftop</p>
-      <p class="caption">Golden hour, LA</p>
-    </div>
-
-    <!-- ===== PHOTO 6 ===== -->
-    <div class="photo-card">
-      <img
-        src="photos/photo6.jpg"
-        alt="My photograph"
-        data-caption="Full description for photo 6."
-        onclick="openLightbox(this.src, this.dataset.caption)"
-      >
-      <p class="photo-title">Photo Six</p>
-      <p class="caption">Caption goes here</p>
-    </div>
-
-    <!--
-      ===== ADD MORE PHOTOS — COPY THIS BLOCK =====
-
-      <div class="photo-card">
-        <img
-          src="photos/YOURFILENAME.jpg"
-          alt="My photograph"
-          data-caption="Your full click-to-see description here"
-          onclick="openLightbox(this.src, this.dataset.caption)"
-        >
-        <p class="photo-title">YOUR TITLE</p>
-        <p class="caption">Your short caption</p>
-      </div>
-
-      =============================================
-    -->
-
-  </div><!-- end gallery-grid -->
+        const card = document.createElement('div');
+        card.className = 'photo-card';
+        card.innerHTML =
+          '<img src="' + src + '" alt="' + title + '"' +
+          ' data-caption="' + title + (caption ? ' — ' + caption : '') + '"' +
+          ' onclick="openLightbox(this.src, this.dataset.caption)">' +
+          '<p class="photo-title">' + title + '</p>' +
+          (caption ? '<p class="caption">' + caption + '</p>' : '');
+        grid.appendChild(card);
+      });
+    })
+    .catch(() => {
+      document.getElementById('gallery-grid').innerHTML =
+        '<p style="color:#f00;grid-column:1/-1;text-align:center">Could not load photos.txt</p>';
+    });
+  </script>
 
 </div><!-- end page-wrapper -->
 

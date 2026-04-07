@@ -1,0 +1,18 @@
+# ============================================
+# TANNER'S PHOTO GALLERY
+# ============================================
+# To add a photo:
+#   1. Upload your image to the "photos/" folder on GitHub
+#   2. Add a line below in this format:
+#
+#        filename.jpg | Title | Caption
+#
+#   That's it! The gallery updates automatically.
+#   Lines starting with # are ignored.
+# ============================================
+
+bridge_walk.jpg.jpg | The Bridge | Walking into the light
+bridge_portrait.jpg.jpg | Bridge Portrait | Golden hour vibes
+baby_beach.jpg.jpg | Beach Baby | First beach trip
+laguna.jpg.jpg | Laguna | Laguna Beach, CA
+rooftop.jpg.JPG | Rooftop | Golden hour, LA
