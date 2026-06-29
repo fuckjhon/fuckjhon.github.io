@@ -20,3 +20,5 @@ DSCF3306.jpg | River | Peru
 DSCF3357.jpg | Stroll | Peru
 DSCF3358.jpg | Lolipop | Peru
 scuba.jpg | Scuba | Koh Tao
+
+scuba.jpeg | Scuba | Koh Tao
