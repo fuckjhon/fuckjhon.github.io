@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADMIN — Tanner Cordalis</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { background: #000; }
+    #admin-wrap {
+      max-width: 540px;
+      margin: 40px auto;
+      padding: 0 16px 60px;
+    }
+    .admin-box {
+      background: #111;
+      border: 3px solid #ffd700;
+      padding: 24px;
+      margin-bottom: 20px;
+    }
+    .admin-box h2 {
+      color: #ffd700;
+      font-family: 'Comic Sans MS', cursive;
+      text-align: center;
+      margin: 0 0 20px;
+      font-size: 1.4em;
+      border-bottom: 2px solid #ffd700;
+      padding-bottom: 10px;
+    }
+    label {
+      display: block;
+      color: #ffaa00;
+      font-family: 'Comic Sans MS', cursive;
+      margin: 14px 0 4px;
+      font-size: 0.95em;
+    }
+    input[type=text], input[type=password], input[type=file] {
+      width: 100%;
+      box-sizing: border-box;
+      background: #000;
+      border: 2px solid #555;
+      color: #fff;
+      padding: 8px 10px;
+      font-family: 'Comic Sans MS', cursive;
+      font-size: 1em;
+    }
+    input[type=file] {
+      padding: 6px;
+      cursor: pointer;
+    }
+    input[type=text]:focus, input[type=password]:focus {
+      border-color: #ffd700;
+      outline: none;
+    }
+    .btn {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #ffd700;
+      color: #000;
+      border: none;
+      font-family: 'Comic Sans MS', cursive;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      border: 3px outset #ffaa00;
+    }
+    .btn:hover { background: #ffaa00; }
+    .btn:disabled { background: #555; color: #999; cursor: not-allowed; border-color: #444; }
+    .btn-red {
+      background: #cc0000;
+      color: #fff;
+      border-color: #ff0000;
+      margin-top: 10px;
+      font-size: 0.85em;
+    }
+    .btn-red:hover { background: #ff0000; }
+    #status {
+      text-align: center;
+      font-family: 'Comic Sans MS', cursive;
+      font-size: 1em;
+      padding: 10px;
+      margin-top: 14px;
+      display: none;
+    }
+    #status.ok  { background: #003300; color: #00ff88; border: 2px solid #00aa44; }
+    #status.err { background: #330000; color: #ff6666; border: 2px solid #aa0000; }
+    #preview {
+      margin-top: 12px;
+      text-align: center;
+    }
+    #preview img {
+      max-width: 100%;
+      max-height: 220px;
+      border: 3px solid #ffd700;
+      display: none;
+    }
+    .gallery-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .gallery-list li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #fff;
+      font-family: 'Comic Sans MS', cursive;
+      font-size: 0.85em;
+      padding: 6px 8px;
+      border-bottom: 1px solid #333;
+    }
+    .gallery-list li:last-child { border-bottom: none; }
+    .gallery-list span { color: #aaa; font-size: 0.8em; }
+    .del-btn {
+      background: #550000;
+      color: #ff6666;
+      border: 1px solid #aa0000;
+      font-size: 0.75em;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-family: 'Comic Sans MS', cursive;
+    }
+    .del-btn:hover { background: #aa0000; color: #fff; }
+    #token-section, #upload-section { display: none; }
+  </style>
+</head>
+<body>
+<div id="admin-wrap">
+
+  <div class="admin-box" style="text-align:center; padding:16px">
+    <div style="font-size:2em">📷 🐎 📷</div>
+    <h2 style="border:none; margin-bottom:0">TANNER'S PHOTO ADMIN</h2>
+    <div style="color:#aaa; font-family:'Comic Sans MS',cursive; font-size:0.85em">secret zone 🤫</div>
+  </div>
+
+  <!-- TOKEN SETUP -->
+  <div class="admin-box" id="token-section">
+    <h2>🔑 ENTER GITHUB TOKEN</h2>
+    <p style="color:#aaa; font-family:'Comic Sans MS',cursive; font-size:0.85em; margin:0 0 10px">
+      Your GitHub Personal Access Token. Only entered once — saved in this browser.
+    </p>
+    <label>Token (ghp_...)</label>
+    <input type="password" id="token-input" placeholder="ghp_xxxxxxxxxxxx">
+    <button class="btn" onclick="saveToken()">SAVE TOKEN &amp; CONTINUE</button>
+  </div>
+
+  <!-- UPLOAD SECTION -->
+  <div id="upload-section">
+
+    <div class="admin-box">
+      <h2>📤 UPLOAD A PHOTO</h2>
+
+      <label>Photo File</label>
+      <input type="file" id="file-input" accept="image/*" onchange="previewPhoto(this)">
+      <div id="preview"><img id="preview-img" src="" alt="preview"></div>
+
+      <label>Title</label>
+      <input type="text" id="title-input" placeholder="e.g. Sunset">
+
+      <label>Location</label>
+      <input type="text" id="location-input" placeholder="e.g. Koh Tao">
+
+      <button class="btn" id="upload-btn" onclick="uploadPhoto()">🐎 UPLOAD TO GALLERY 🐎</button>
+      <div id="status"></div>
+    </div>
+
+    <div class="admin-box">
+      <h2>🗂 CURRENT PHOTOS</h2>
+      <ul class="gallery-list" id="gallery-list">
+        <li style="color:#aaa; font-family:'Comic Sans MS',cursive">Loading...</li>
+      </ul>
+    </div>
+
+    <button class="btn btn-red" onclick="clearToken()">🔑 Change GitHub Token</button>
+
+  </div>
+
+</div>
+
+<script>
+const OWNER = 'fuckjhon';
+const REPO  = 'fuckjhon.github.io';
+const BRANCH = 'master';
+
+function getToken() { return localStorage.getItem('gh_admin_token') || ''; }
+
+function saveToken() {
+  const t = document.getElementById('token-input').value.trim();
+  if (!t) { alert('Please enter your token!'); return; }
+  localStorage.setItem('gh_admin_token', t);
+  showUploadSection();
+}
+
+function clearToken() {
+  localStorage.removeItem('gh_admin_token');
+  document.getElementById('upload-section').style.display = 'none';
+  document.getElementById('token-section').style.display = 'block';
+}
+
+function showUploadSection() {
+  document.getElementById('token-section').style.display = 'none';
+  document.getElementById('upload-section').style.display = 'block';
+  loadGalleryList();
+}
+
+function init() {
+  if (getToken()) {
+    showUploadSection();
+  } else {
+    document.getElementById('token-section').style.display = 'block';
+  }
+}
+
+function previewPhoto(input) {
+  const img = document.getElementById('preview-img');
+  if (input.files && input.files[0]) {
+    img.src = URL.createObjectURL(input.files[0]);
+    img.style.display = 'block';
+    // Auto-fill title from filename if empty
+    const titleInput = document.getElementById('title-input');
+    if (!titleInput.value) {
+      let name = input.files[0].name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
+      titleInput.value = name.charAt(0).toUpperCase() + name.slice(1);
+    }
+  }
+}
+
+function setStatus(msg, isErr) {
+  const el = document.getElementById('status');
+  el.textContent = msg;
+  el.className = isErr ? 'err' : 'ok';
+  el.style.display = 'block';
+}
+
+async function apiGet(path) {
+  const r = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path + '?ref=' + BRANCH, {
+    headers: { Authorization: 'token ' + getToken(), Accept: 'application/vnd.github+json' }
+  });
+  if (!r.ok) throw new Error('GitHub API error: ' + r.status);
+  return r.json();
+}
+
+async function apiPut(path, content64, message, sha) {
+  const body = { message, content: content64, branch: BRANCH };
+  if (sha) body.sha = sha;
+  const r = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+    method: 'PUT',
+    headers: { Authorization: 'token ' + getToken(), Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    body: JSON.stringify(body)
+  });
+  if (!r.ok) {
+    const err = await r.json();
+    throw new Error(err.message || 'Upload failed');
+  }
+  return r.json();
+}
+
+function toBase64(file) {
+  return new Promise((res, rej) => {
+    const reader = new FileReader();
+    reader.onload = () => res(reader.result.split(',')[1]);
+    reader.onerror = rej;
+    reader.readAsDataURL(file);
+  });
+}
+
+function sanitizeFilename(name) {
+  return name.toLowerCase().replace(/[^a-z0-9.]+/g, '_');
+}
+
+async function uploadPhoto() {
+  const file = document.getElementById('file-input').files[0];
+  const title = document.getElementById('title-input').value.trim();
+  const location = document.getElementById('location-input').value.trim();
+
+  if (!file)     { setStatus('Please choose a photo!', true); return; }
+  if (!title)    { setStatus('Please enter a title!', true); return; }
+  if (!location) { setStatus('Please enter a location!', true); return; }
+
+  const btn = document.getElementById('upload-btn');
+  btn.disabled = true;
+  setStatus('Uploading photo...', false);
+
+  try {
+    const ext = file.name.split('.').pop().toLowerCase();
+    const filename = sanitizeFilename(title.replace(/\s+/g, '_') + '.' + ext);
+    const content64 = await toBase64(file);
+
+    // Upload image
+    setStatus('Uploading image file...', false);
+    await apiPut('photos/' + filename, content64, 'Add photo: ' + title);
+
+    // Update photos.txt
+    setStatus('Updating gallery list...', false);
+    const txtData = await apiGet('photos.txt');
+    const current = atob(txtData.content.replace(/\n/g, ''));
+    const newLine = '\n' + filename + ' | ' + title + ' | ' + location;
+    const updated = btoa(unescape(encodeURIComponent(current + newLine)));
+    await apiPut('photos.txt', updated, 'Gallery: add ' + title + ' (' + location + ')', txtData.sha);
+
+    setStatus('✅ ' + title + ' added to gallery! Live in ~30 seconds.', false);
+    document.getElementById('file-input').value = '';
+    document.getElementById('title-input').value = '';
+    document.getElementById('location-input').value = '';
+    document.getElementById('preview-img').style.display = 'none';
+    loadGalleryList();
+  } catch(e) {
+    setStatus('❌ Error: ' + e.message, true);
+  }
+  btn.disabled = false;
+}
+
+async function loadGalleryList() {
+  const list = document.getElementById('gallery-list');
+  list.innerHTML = '<li style="color:#aaa;font-family:\'Comic Sans MS\',cursive">Loading...</li>';
+  try {
+    const data = await apiGet('photos.txt');
+    const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    const lines = text.split('\n').filter(l => l.trim() && !l.startsWith('#'));
+    if (!lines.length) { list.innerHTML = '<li style="color:#aaa;font-family:\'Comic Sans MS\',cursive">No photos yet!</li>'; return; }
+    list.innerHTML = '';
+    lines.forEach((line, i) => {
+      const parts = line.split('|').map(s => s.trim());
+      if (parts.length < 2) return;
+      const li = document.createElement('li');
+      li.innerHTML = '<div><strong style="color:#ffd700">' + parts[1] + '</strong> <span>' + (parts[2] || '') + '</span><br><span style="font-size:0.75em;color:#555">' + parts[0] + '</span></div>' +
+        '<button class="del-btn" onclick="deletePhoto(' + i + ',\'' + parts[0].replace(/'/g,"\\'")+'\',\'' + parts[1].replace(/'/g,"\\'") + '\')">✕ remove</button>';
+      list.appendChild(li);
+    });
+  } catch(e) {
+    list.innerHTML = '<li style="color:#f66;font-family:\'Comic Sans MS\',cursive">Could not load list — check your token.</li>';
+  }
+}
+
+async function deletePhoto(lineIndex, filename, title) {
+  if (!confirm('Remove "' + title + '" from the gallery? (The image file stays, just removed from the list)')) return;
+  try {
+    const data = await apiGet('photos.txt');
+    const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    const lines = text.split('\n');
+    const dataLines = lines.filter(l => l.trim() && !l.startsWith('#'));
+    const targetLine = dataLines[lineIndex];
+    const newText = lines.filter(l => l.trim() !== targetLine.trim()).join('\n');
+    const updated = btoa(unescape(encodeURIComponent(newText)));
+    await apiPut('photos.txt', updated, 'Gallery: remove ' + title, data.sha);
+    setStatus('✅ "' + title + '" removed from gallery.', false);
+    loadGalleryList();
+  } catch(e) {
+    setStatus('❌ Error: ' + e.message, true);
+  }
+}
+
+init();
+</script>
+</body>
+</html>
