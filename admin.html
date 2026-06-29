@@ -7,72 +7,39 @@
   <link rel="stylesheet" href="style.css">
   <style>
     body { background: #000; }
-    #admin-wrap {
-      max-width: 540px;
-      margin: 40px auto;
-      padding: 0 16px 60px;
-    }
-    .admin-box {
-      background: #111;
-      border: 3px solid #ffd700;
-      padding: 24px;
-      margin-bottom: 20px;
-    }
+    #admin-wrap { max-width: 540px; margin: 40px auto; padding: 0 16px 60px; }
+    .admin-box { background: #111; border: 3px solid #ffd700; padding: 24px; margin-bottom: 20px; }
     .admin-box h2 {
-      color: #ffd700;
-      font-family: 'Comic Sans MS', cursive;
-      text-align: center;
-      margin: 0 0 20px;
-      font-size: 1.4em;
-      border-bottom: 2px solid #ffd700;
-      padding-bottom: 10px;
+      color: #ffd700; font-family: 'Comic Sans MS', cursive; text-align: center;
+      margin: 0 0 20px; font-size: 1.4em; border-bottom: 2px solid #ffd700; padding-bottom: 10px;
     }
-    label {
-      display: block;
-      color: #ffaa00;
-      font-family: 'Comic Sans MS', cursive;
-      margin: 14px 0 4px;
-      font-size: 0.95em;
-    }
+    label { display: block; color: #ffaa00; font-family: 'Comic Sans MS', cursive; margin: 14px 0 4px; font-size: 0.95em; }
     input[type=text], input[type=password], input[type=file] {
-      width: 100%;
-      box-sizing: border-box;
-      background: #000;
-      border: 2px solid #555;
-      color: #fff;
-      padding: 8px 10px;
-      font-family: 'Comic Sans MS', cursive;
-      font-size: 1em;
+      width: 100%; box-sizing: border-box; background: #000; border: 2px solid #555;
+      color: #fff; padding: 8px 10px; font-family: 'Comic Sans MS', cursive; font-size: 1em;
     }
     input[type=file] { padding: 6px; cursor: pointer; }
     input[type=text]:focus, input[type=password]:focus { border-color: #ffd700; outline: none; }
     .btn {
-      display: block;
-      width: 100%;
-      margin-top: 20px;
-      padding: 12px;
-      background: #ffd700;
-      color: #000;
-      border: 3px outset #ffaa00;
-      font-family: 'Comic Sans MS', cursive;
-      font-size: 1.1em;
-      font-weight: bold;
-      cursor: pointer;
+      display: block; width: 100%; margin-top: 20px; padding: 12px;
+      background: #ffd700; color: #000; border: 3px outset #ffaa00;
+      font-family: 'Comic Sans MS', cursive; font-size: 1.1em; font-weight: bold; cursor: pointer;
     }
     .btn:hover { background: #ffaa00; }
     .btn:disabled { background: #555; color: #999; cursor: not-allowed; border-color: #444; }
     .btn-red { background: #cc0000; color: #fff; border-color: #ff0000; margin-top: 10px; font-size: 0.85em; }
     .btn-red:hover { background: #ff0000; }
-    #status {
-      text-align: center;
-      font-family: 'Comic Sans MS', cursive;
-      font-size: 1em;
-      padding: 10px;
-      margin-top: 14px;
-      display: none;
+    .btn-sm {
+      display: inline-block; width: auto; margin-top: 8px; padding: 6px 14px;
+      font-size: 0.85em; background: #333; color: #ffd700; border: 2px outset #555;
     }
-    #status.ok  { background: #003300; color: #00ff88; border: 2px solid #00aa44; }
-    #status.err { background: #330000; color: #ff6666; border: 2px solid #aa0000; }
+    .btn-sm:hover { background: #444; }
+    #status {
+      text-align: center; font-family: 'Comic Sans MS', cursive; font-size: 1em;
+      padding: 10px; margin-top: 14px; display: none;
+    }
+    #status.ok      { background: #003300; color: #00ff88; border: 2px solid #00aa44; }
+    #status.err     { background: #330000; color: #ff6666; border: 2px solid #aa0000; }
     #status.working { background: #001133; color: #66aaff; border: 2px solid #0055cc; }
     #preview { margin-top: 12px; text-align: center; }
     #preview img { max-width: 100%; max-height: 220px; border: 3px solid #ffd700; display: none; }
@@ -94,14 +61,22 @@
     }
     .del-btn:hover { background: #aa0000; color: #fff; }
     #token-section, #upload-section { display: none; }
+    #header-img { height: 60px; display: none; }
+    #header-emoji { font-size: 2em; }
+    #gif-status { font-family: 'Comic Sans MS', cursive; font-size: 0.8em; text-align: center; margin-top: 6px; color: #888; }
   </style>
 </head>
 <body>
 <div id="admin-wrap">
 
+  <!-- HEADER -->
   <div class="admin-box" style="text-align:center; padding:16px">
-    <div style="font-size:2em">📷 🐎 📷</div>
-    <h2 style="border:none; margin-bottom:0">TANNER'S PHOTO ADMIN</h2>
+    <div>
+      <span id="header-emoji">📷 🐎 📷</span>
+      <img id="header-img" src="gifs/admin-camera.gif" alt="camera"
+           onload="this.style.display='inline';document.getElementById('header-emoji').style.display='none'">
+    </div>
+    <h2 style="border:none; margin-bottom:4px">TANNER'S PHOTO ADMIN</h2>
     <div style="color:#aaa; font-family:'Comic Sans MS',cursive; font-size:0.85em">secret zone 🤫</div>
   </div>
 
@@ -118,20 +93,17 @@
 
   <!-- UPLOAD SECTION -->
   <div id="upload-section">
+
     <div class="admin-box">
       <h2>📤 UPLOAD A PHOTO</h2>
-
       <label>Photo File</label>
       <input type="file" id="file-input" accept="image/*" onchange="previewPhoto(this)">
       <div id="preview"><img id="preview-img" src="" alt="preview"></div>
       <div id="size-info"></div>
-
       <label>Title</label>
       <input type="text" id="title-input" placeholder="e.g. Sunset">
-
       <label>Location</label>
       <input type="text" id="location-input" placeholder="e.g. Koh Tao">
-
       <button class="btn" id="upload-btn" onclick="uploadPhoto()">🐎 UPLOAD TO GALLERY 🐎</button>
       <div class="progress-bar-wrap" id="progress-wrap"><div class="progress-bar" id="progress-bar"></div></div>
       <div id="status"></div>
@@ -144,16 +116,27 @@
       </ul>
     </div>
 
+    <!-- HEADER GIF CHANGER -->
+    <div class="admin-box">
+      <h2 style="font-size:1.1em">🎨 CHANGE HEADER IMAGE</h2>
+      <p style="color:#aaa; font-family:'Comic Sans MS',cursive; font-size:0.82em; margin:0 0 8px">
+        Pick any gif or image to replace the header above.
+      </p>
+      <input type="file" id="gif-input" accept="image/*,image/gif">
+      <button class="btn btn-sm" onclick="uploadHeaderGif()">Upload Header Image</button>
+      <div id="gif-status"></div>
+    </div>
+
     <button class="btn btn-red" onclick="clearToken()">🔑 Change GitHub Token</button>
   </div>
 
 </div>
 <script>
-const OWNER = 'fuckjhon';
-const REPO  = 'fuckjhon.github.io';
+const OWNER  = 'fuckjhon';
+const REPO   = 'fuckjhon.github.io';
 const BRANCH = 'master';
-const MAX_PX = 1800;   // resize phone photos to max 1800px on longest side
-const QUALITY = 0.85;  // jpeg quality after resize
+const MAX_PX  = 1800;
+const QUALITY = 0.85;
 
 function getToken() { return localStorage.getItem('gh_admin_token') || ''; }
 
@@ -181,9 +164,7 @@ function init() {
   else document.getElementById('token-section').style.display = 'block';
 }
 
-function fmtSize(bytes) {
-  return bytes > 1048576 ? (bytes/1048576).toFixed(1) + ' MB' : Math.round(bytes/1024) + ' KB';
-}
+function fmtSize(b) { return b > 1048576 ? (b/1048576).toFixed(1)+' MB' : Math.round(b/1024)+' KB'; }
 
 function previewPhoto(input) {
   if (!input.files || !input.files[0]) return;
@@ -192,29 +173,25 @@ function previewPhoto(input) {
   img.src = URL.createObjectURL(file);
   img.style.display = 'block';
   document.getElementById('size-info').textContent = 'Original: ' + fmtSize(file.size) + ' — will be compressed before upload';
-  const titleInput = document.getElementById('title-input');
-  if (!titleInput.value) {
+  const t = document.getElementById('title-input');
+  if (!t.value) {
     let name = file.name.replace(/\.[^.]+$/, '').replace(/[-_]/g, ' ');
-    titleInput.value = name.charAt(0).toUpperCase() + name.slice(1);
+    t.value = name.charAt(0).toUpperCase() + name.slice(1);
   }
 }
 
 function setStatus(msg, type) {
   const el = document.getElementById('status');
-  el.textContent = msg;
-  el.className = type || 'ok';
-  el.style.display = 'block';
+  el.textContent = msg; el.className = type || 'ok'; el.style.display = 'block';
 }
 
 function setProgress(pct) {
   const wrap = document.getElementById('progress-wrap');
   const bar  = document.getElementById('progress-bar');
-  wrap.style.display = 'block';
-  bar.style.width = pct + '%';
+  wrap.style.display = 'block'; bar.style.width = pct + '%';
   if (pct >= 100) setTimeout(() => { wrap.style.display = 'none'; }, 800);
 }
 
-// Compress + resize image using canvas, returns base64 string (no data: prefix)
 function compressImage(file) {
   return new Promise((resolve, reject) => {
     const img = new Image();
@@ -229,86 +206,100 @@ function compressImage(file) {
       const canvas = document.createElement('canvas');
       canvas.width = w; canvas.height = h;
       canvas.getContext('2d').drawImage(img, 0, 0, w, h);
-      const dataUrl = canvas.toDataURL('image/jpeg', QUALITY);
-      resolve(dataUrl.split(',')[1]);
+      resolve(canvas.toDataURL('image/jpeg', QUALITY).split(',')[1]);
     };
     img.onerror = reject;
     img.src = url;
   });
 }
 
-async function apiGet(path) {
-  const r = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path + '?ref=' + BRANCH + '&t=' + Date.now(), {
-    headers: { Authorization: 'token ' + getToken(), Accept: 'application/vnd.github+json' }
+function readRaw(file) {
+  return new Promise((res, rej) => {
+    const r = new FileReader();
+    r.onload = () => res(r.result.split(',')[1]);
+    r.onerror = rej;
+    r.readAsDataURL(file);
   });
-  if (!r.ok) throw new Error('GitHub API error ' + r.status);
+}
+
+async function apiGet(path) {
+  const r = await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+path+'?ref='+BRANCH+'&t='+Date.now(), {
+    headers: { Authorization: 'token '+getToken(), Accept: 'application/vnd.github+json' }
+  });
+  if (!r.ok) throw new Error('GitHub API error '+r.status);
   return r.json();
 }
 
 async function apiPut(path, content64, message, sha) {
   const body = { message, content: content64, branch: BRANCH };
   if (sha) body.sha = sha;
-  const r = await fetch('https://api.github.com/repos/' + OWNER + '/' + REPO + '/contents/' + path, {
+  const r = await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+path, {
     method: 'PUT',
-    headers: { Authorization: 'token ' + getToken(), Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
+    headers: { Authorization: 'token '+getToken(), Accept: 'application/vnd.github+json', 'Content-Type': 'application/json' },
     body: JSON.stringify(body)
   });
   if (!r.ok) { const e = await r.json(); throw new Error(e.message || 'Upload failed'); }
   return r.json();
 }
 
-function sanitizeFilename(name) {
-  return name.toLowerCase().replace(/[^a-z0-9.]+/g, '_');
-}
+function sanitizeFilename(name) { return name.toLowerCase().replace(/[^a-z0-9.]+/g, '_'); }
 
 async function uploadPhoto() {
   const file     = document.getElementById('file-input').files[0];
   const title    = document.getElementById('title-input').value.trim();
   const location = document.getElementById('location-input').value.trim();
-
   if (!file)     { setStatus('Please choose a photo!', 'err'); return; }
   if (!title)    { setStatus('Please enter a title!', 'err'); return; }
   if (!location) { setStatus('Please enter a location!', 'err'); return; }
-
   const btn = document.getElementById('upload-btn');
   btn.disabled = true;
-
   try {
     const filename = sanitizeFilename(title.replace(/\s+/g, '_')) + '.jpg';
-
-    setStatus('⏳ Compressing photo...', 'working');
-    setProgress(10);
+    setStatus('⏳ Compressing photo...', 'working'); setProgress(10);
     const content64 = await compressImage(file);
-    const compressedKB = Math.round(content64.length * 0.75 / 1024);
-    document.getElementById('size-info').textContent = 'Compressed to ~' + compressedKB + ' KB';
-
-    setStatus('⏳ Uploading image... (may take a moment)', 'working');
-    setProgress(40);
-    await apiPut('photos/' + filename, content64, 'Add photo: ' + title);
-
-    setStatus('⏳ Updating gallery list...', 'working');
-    setProgress(80);
+    document.getElementById('size-info').textContent = 'Compressed to ~' + Math.round(content64.length*0.75/1024) + ' KB';
+    setStatus('⏳ Uploading image...', 'working'); setProgress(40);
+    await apiPut('photos/'+filename, content64, 'Add photo: '+title);
+    setStatus('⏳ Updating gallery list...', 'working'); setProgress(80);
     const txtData = await apiGet('photos.txt');
-    const current = decodeURIComponent(escape(atob(txtData.content.replace(/\n/g, ''))));
-    const trimmed = current.trimEnd();
-    const newLine = '\n' + filename + ' | ' + title + ' | ' + location + '\n';
-    const updated = btoa(unescape(encodeURIComponent(trimmed + newLine)));
-    await apiPut('photos.txt', updated, 'Gallery: add ' + title + ' (' + location + ')', txtData.sha);
-
+    const current = decodeURIComponent(escape(atob(txtData.content.replace(/\n/g,''))));
+    const updated = btoa(unescape(encodeURIComponent(current.trimEnd()+'\n'+filename+' | '+title+' | '+location+'\n')));
+    await apiPut('photos.txt', updated, 'Gallery: add '+title+' ('+location+')', txtData.sha);
     setProgress(100);
-    setStatus('✅ ' + title + ' added! Live on your site in ~30 seconds.', 'ok');
-
+    setStatus('✅ '+title+' added! Live in ~30 seconds.', 'ok');
     document.getElementById('file-input').value = '';
     document.getElementById('title-input').value = '';
     document.getElementById('location-input').value = '';
     document.getElementById('preview-img').style.display = 'none';
     document.getElementById('size-info').textContent = '';
     loadGalleryList();
-  } catch(e) {
-    setProgress(0);
-    setStatus('❌ Error: ' + e.message, 'err');
-  }
+  } catch(e) { setProgress(0); setStatus('❌ Error: '+e.message, 'err'); }
   btn.disabled = false;
+}
+
+async function uploadHeaderGif() {
+  const file = document.getElementById('gif-input').files[0];
+  const statusEl = document.getElementById('gif-status');
+  if (!file) { statusEl.textContent = 'Pick a file first!'; statusEl.style.color = '#f66'; return; }
+  statusEl.textContent = '⏳ Uploading...'; statusEl.style.color = '#66aaff';
+  try {
+    const ext = file.name.split('.').pop().toLowerCase();
+    const content64 = await readRaw(file);
+    // Check if file already exists to get SHA
+    let sha;
+    try { const existing = await apiGet('gifs/admin-camera.gif'); sha = existing.sha; } catch(e) {}
+    await apiPut('gifs/admin-camera.gif', content64, 'Update admin header image', sha);
+    statusEl.textContent = '✅ Done! Refresh the page to see it.';
+    statusEl.style.color = '#00ff88';
+    // Reload header image
+    const img = document.getElementById('header-img');
+    img.src = 'gifs/admin-camera.gif?t=' + Date.now();
+    img.style.display = 'inline';
+    document.getElementById('header-emoji').style.display = 'none';
+  } catch(e) {
+    statusEl.textContent = '❌ Error: ' + e.message;
+    statusEl.style.color = '#f66';
+  }
 }
 
 async function loadGalleryList() {
@@ -316,24 +307,18 @@ async function loadGalleryList() {
   list.innerHTML = '<li style="color:#aaa;font-family:\'Comic Sans MS\',cursive">Loading...</li>';
   try {
     const data = await apiGet('photos.txt');
-    const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
     const lines = text.split('\n').filter(l => l.trim() && !l.startsWith('#'));
-    if (!lines.length) {
-      list.innerHTML = '<li style="color:#aaa;font-family:\'Comic Sans MS\',cursive">No photos yet!</li>';
-      return;
-    }
+    if (!lines.length) { list.innerHTML = '<li style="color:#aaa;font-family:\'Comic Sans MS\',cursive">No photos yet!</li>'; return; }
     list.innerHTML = '';
     lines.forEach((line, i) => {
       const parts = line.split('|').map(s => s.trim());
       if (parts.length < 2) return;
       const li = document.createElement('li');
       li.innerHTML =
-        '<div><strong style="color:#ffd700">' + parts[1] + '</strong>' +
-        (parts[2] ? ' <span>' + parts[2] + '</span>' : '') +
-        '<br><span style="font-size:0.75em;color:#555">' + parts[0] + '</span></div>' +
-        '<button class="del-btn" onclick="deletePhoto(' + i + ',\'' +
-        parts[0].replace(/\\/g,'\\\\').replace(/'/g,"\\'") + '\',\'' +
-        parts[1].replace(/\\/g,'\\\\').replace(/'/g,"\\'") + '\')">✕ remove</button>';
+        '<div><strong style="color:#ffd700">'+parts[1]+'</strong>'+(parts[2]?' <span>'+parts[2]+'</span>':'')+
+        '<br><span style="font-size:0.75em;color:#555">'+parts[0]+'</span></div>'+
+        '<button class="del-btn" onclick="deletePhoto('+i+',\''+parts[0].replace(/\\/g,'\\\\').replace(/'/g,"\\'")+'\',\''+parts[1].replace(/\\/g,'\\\\').replace(/'/g,"\\'") +'\')">✕ remove</button>';
       list.appendChild(li);
     });
   } catch(e) {
@@ -342,21 +327,18 @@ async function loadGalleryList() {
 }
 
 async function deletePhoto(lineIndex, filename, title) {
-  if (!confirm('Remove "' + title + '" from the gallery?\n(Image file stays, just removed from the list.)')) return;
+  if (!confirm('Remove "'+title+'" from the gallery?\n(Image file stays, just removed from the list.)')) return;
   try {
     const data = await apiGet('photos.txt');
-    const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g, ''))));
+    const text = decodeURIComponent(escape(atob(data.content.replace(/\n/g,''))));
     const lines = text.split('\n');
     const dataLines = lines.filter(l => l.trim() && !l.startsWith('#'));
     const targetLine = dataLines[lineIndex];
     const newText = lines.filter(l => l.trim() !== targetLine.trim()).join('\n');
-    const updated = btoa(unescape(encodeURIComponent(newText)));
-    await apiPut('photos.txt', updated, 'Gallery: remove ' + title, data.sha);
-    setStatus('✅ "' + title + '" removed from gallery.', 'ok');
+    await apiPut('photos.txt', btoa(unescape(encodeURIComponent(newText))), 'Gallery: remove '+title, data.sha);
+    setStatus('✅ "'+title+'" removed from gallery.', 'ok');
     loadGalleryList();
-  } catch(e) {
-    setStatus('❌ Error: ' + e.message, 'err');
-  }
+  } catch(e) { setStatus('❌ Error: '+e.message, 'err'); }
 }
 
 init();
